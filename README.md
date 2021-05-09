@@ -172,3 +172,4 @@ Access to this machine is only allowed from the following IP addresses:</p>
 <p><li>Ran the Elk_Playbook.yml in that same directory (ansible-playbook Elk_Playbook.yml)</li></p>
 <p><li>Lastly, I SSH into the ELK-VM to verify the server is up and running.</li></p>
 <p>The following screenshot displays the result of running docker ps after successfully configuring the ELK instance.</p>
+<a href="https://github.com/jbrooks417/Elk-stack-/blob/main/Linux/Capture5.PNG"> Elk-Install</a>
