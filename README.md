@@ -251,7 +251,7 @@ done
 
 <p> After letting that run for a couple minutes the next step was to check the logs on kibana</p>
 <img src="https://github.com/jbrooks417/Automated-Elk-Stack-Deployment/blob/main/Capture2.PNG" alt="Kibabna Logs">
-<p> As the image shows above the script created logs for the failed ssh attempts meaing kiabana is logging data properly</p>
+<p> As the above image shows, the script created logs for the failed ssh attempts, meaning kiabana is logging data properly</p>
 
 <p>As a Bonus, provide the specific commands the user will need to run to download the playbook, update the files, etc.</p>
 <pre>
