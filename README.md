@@ -191,8 +191,10 @@ Access to this machine is only allowed from the following IP addresses:</p>
 <p>We have installed the following Beats on these machines:</p>
 
 <a href="https://github.com/jbrooks417/Elk-stack-/blob/main/Linux/Capture6.PNG"> Filebeat-playbook</a>
+<img src="https://github.com/jbrooks417/Elk-stack-/blob/main/Linux/Capture6.PNG" alt="Filebeat-playbook">
 
 <a href="https://github.com/jbrooks417/Elk-stack-/blob/main/Linux/Capture7.PNG"> Metricbeat-playbook</a>
+<img src="https://github.com/jbrooks417/Elk-stack-/blob/main/Linux/Capture7.PNG" alt="Metricbeat-playbook">
 
 <p>These Beats allow us to collect the following information from each machine:</p>
 
@@ -224,6 +226,33 @@ Access to this machine is only allowed from the following IP addresses:</p>
 <p>Which file do you update to make Ansible run the playbook on a specific machine? /etc/ansible/hosts file (IP of the Virtual Machines).<p>
 <p>How do I specify which machine to install the ELK server on versus which to install Filebeat on? I have to specify two separate groups in the etc/ansible/hosts file. One of the groups will be webservers which has the IPs of the VMs that I will install Filebeat to. The other group is named elkservers which will have the IP of the VM I will install ELK to.</p>
 <p>Which URL do you navigate to in order to check that the ELK server is running? http://104.46.114.131/app/kibana</p>
+
+<h2>SSH Barage</h2>
+
+<p> The goal here was to generate a high amount of failled SSH login attempts to verify that Kibana was wroking. First I had to verify that Kibana was logging data properly, so I attempted to SSH into one of the web VM's by running <pre>ssh azadmin@10.0.0.8</pre></p>
+<p> Because I was attempting to SSH into one of the Web VM's from my jumpbox without acessing my ansible containter this was the result becuase the only the Ansbile container contains the correct keys<pre> ```bash 
+azadmin@Jump-Box-Provisoner:~$ ssh azadmin@10.0.0.8 
+azadmin@10.0.0.8: Peremision denied (PublicKey)
+```
+</pre></p> 
+
+<p> After verifying that Kibana was indeed picking up the failed SSH attempt I then created a infinite for loop that attempts to ssh into all three Web VM's</p>
+<pre> #!bin/bash
+for ((;;))
+  do
+    for s in web-1 web-2 web-3
+      do
+        ssh azdamin@10.0.0.8
+        ssh azdamin@10.0.0.9
+        ssh azadmin@10.0.0.10
+    done
+done
+</pre>
+
+<p> After letting that run for a couple minutes the next step was to check the logs on kibana</p>
+<img src="https://github.com/jbrooks417/Automated-Elk-Stack-Deployment/blob/main/Capture2.PNG" alt="Kibabna Logs">
+<p> As the image shows above the script created logs for the failed ssh attempts meaing kiabana is logging data properly</p>
+
 <p>As a Bonus, provide the specific commands the user will need to run to download the playbook, update the files, etc.</p>
 <pre>
 -------Filebeat---------
